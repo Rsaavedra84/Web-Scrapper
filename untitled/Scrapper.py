@@ -10,11 +10,11 @@ class Scrapper:
         likes = soup.find_all('div', {'class': "MomentCapsuleLikesCount"})
 
         for item in items:
-            print(item.a['href'] + " " + item.a['title'].replace("\n", "").strip() + self.get_likes(items))
+            print(item.a['href'] + " " + item.a['title'].replace("\n", "").strip() + self.get_likes(likes))
 
     def get_likes(self, likes):
         for likeCount in likes:
-            return likeCount
+            return likeCount.text
 
 def main():
     x = Scrapper()
