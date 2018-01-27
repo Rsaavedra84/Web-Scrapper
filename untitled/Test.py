@@ -10,4 +10,3 @@ r2, g2, b2 = img2.split()
 new_img = Image.merge("RGB", (r1, g2, b1))
 new_img = Image.effect_mandelbrot(1, 1, 1)
 new_img.show()
-
