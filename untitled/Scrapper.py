@@ -3,18 +3,26 @@ from urllib import request
 
 class Scrapper:
 
-    #source_code = source.text
-
     def get_titlelink(self, soup):
         items = soup.find_all('div', {'class': "MomentCapsuleSummary-details"})
         likes = soup.find_all('div', {'class': "MomentCapsuleLikesCount"})
 
-        for item in items:
-            print(item.a['href'] + " " + item.a['title'].replace("\n", ""))
+        titles = []
+        links = []
+        likesT = []    #LIKES TABLE
 
-    def get_likes(self, likes):
+        for item in items:
+            titles.append(item.a['title'].replace("\n", ""))
+            links.append(item.a['href'].replace(" ", ""))
+
         for likeCount in likes:
-            return likeCount.text
+            likesT.append(likeCount.text.replace("\n", "").lstrip())  #LEARNT ABOUT RSTRIP AND LSTRIP
+
+        info = list(zip(titles, links, likesT))
+
+        for i in range(len(info)):
+            print(info[i])
+
 
 def main():
     x = Scrapper()
